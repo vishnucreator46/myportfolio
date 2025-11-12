@@ -1,0 +1,352 @@
+:root {
+    --primary: #6366f1;
+    --secondary: #8b5cf6;
+    --accent: #06b6d4;
+    --dark: #0f172a;
+    --darker: #020617;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--darker);
+    color: #e2e8f0;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.glass-panel {
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Card Flip Styles */
+.perspective {
+    perspective: 1000px;
+}
+
+#hero-card {
+    transition: height 0.4s ease-in-out;
+}
+
+#flipper {
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.is-flipped #flipper {
+    transform: rotateY(180deg);
+}
+
+.card-face {
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+}
+
+/* Front face needs to be relative to set the initial height of the container */
+#hero-front {
+    position: relative; 
+}
+
+.card-back {
+    transform: rotateY(180deg);
+}
+
+.liquid-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.blob-1 {
+    width: 500px;
+    height: 500px;
+    background: linear-gradient(45deg, var(--primary), var(--accent));
+    top: 10%;
+    left: 10%;
+    animation: float 25s infinite ease-in-out;
+}
+
+.blob-2 {
+    width: 600px;
+    height: 600px;
+    background: linear-gradient(45deg, var(--secondary), var(--primary));
+    bottom: 10%;
+    right: 10%;
+    animation: float 30s infinite ease-in-out reverse;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    25% {
+        transform: translate(50px, -50px) scale(1.1);
+    }
+    15% {
+        transform: translate(-30px, 40px) scale(1.05);
+    }
+    25% {
+        transform: translate(50px, -50px) scale(1.1);
+    }
+    50% {
+        transform: translate(0, -100px) scale(1);
+    }
+    75% {
+        transform: translate(-50px, -50px) scale(0.9);
+    }
+}
+
+.hero-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
+    transition: all 0.3s ease-in-out;
+}
+
+.hero-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 45px rgba(99, 102, 241, 0.5);
+}
+
+.section-title {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 2rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: 3px;
+}
+
+.skill-card {
+    transition: all 0.3s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.project-card {
+    transition: all 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.btn-primary {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.abstract-output {
+    background: rgba(15, 23, 42, 0.8);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    border-left: 3px solid var(--accent);
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.social-icon {
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: translateY(-3px);
+}
+
+.nav-link {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Projects Dropdown Styling & Animation */
+#projects-dropdown {
+    opacity: 0;
+    transform: translateY(-10px);
+    visibility: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+
+.group:hover #projects-dropdown {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+.vilofury-project-link {
+    position: relative;
+    overflow: hidden;
+}
+
+.vilofury-project-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('VILOFURY.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0; /* Hidden initially */
+    transition: opacity 0.5s ease-in; /* Fade in animation */
+    z-index: -1;
+}
+
+.vilofury-project-link:hover::before {
+    opacity: 0.2; /* Visible on hover */
+}
+
+.vilofury-project-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.vilofury-project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('VILOFURY.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0; /* Hidden initially */
+    transition: opacity 0.5s ease-in; /* Fade in animation */
+    z-index: -1;
+}
+
+.vilofury-project-card:hover::before {
+    opacity: 0.2; /* Visible on hover */
+}
+.credit-card-project-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.credit-card-project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('cc.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0; /* Hidden initially */
+    transition: opacity 0.5s ease-in; /* Fade in animation */
+    z-index: -1;
+}
+
+.credit-card-project-card:hover::before {
+    opacity: 0.2; /* Visible on hover */
+}
+.tictactoe-project-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.tictactoe-project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('xox.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0; /* Hidden initially */
+    transition: opacity 0.5s ease-in; /* Fade in animation */
+    z-index: -1;
+}
+
+.tictactoe-project-card:hover::before {
+    opacity: 0.2; /* Visible on hover */
+}
